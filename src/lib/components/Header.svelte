@@ -1,66 +1,53 @@
 <script lang="ts">
-	import Icon from '$lib/components/Icon.svelte';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte'; // Import the new component
+	import Icon from "$lib/components/Icon.svelte";
+	import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 </script>
 
-<header>
-	<nav>
-		<a href="/" class="logo">
+<header class="bg-white border-b border-gray-200 px-8 py-2">
+	<nav class="flex justify-between items-center">
+		<a
+			href="/"
+			class="flex items-center gap-3 no-underline text-gray-900 hover:text-indigo-600 transition-colors"
+		>
 			<Icon name="translate" />
-			<h1>Content Localizer</h1>
+			<h1 class="text-2xl font-semibold">Content Localizer</h1>
 		</a>
-		<div class="nav-links">
-			<ul>
-				<li><a href="/">Localize</a></li>
-				<li><a href="/vocabulary">Vocabulary</a></li>
-				<li><a href="/settings">Settings</a></li>
-				<li><a href="/help">Help</a></li>
+		<div class="flex items-center gap-8">
+			<ul class="list-none flex gap-8 m-0 p-0">
+				<li>
+					<a
+						href="/"
+						class="no-underline text-gray-600 font-medium hover:text-indigo-600 transition-colors"
+					>
+						Localize
+					</a>
+				</li>
+				<li>
+					<a
+						href="/vocabulary"
+						class="no-underline text-gray-600 font-medium hover:text-indigo-600 transition-colors"
+					>
+						Vocabulary
+					</a>
+				</li>
+				<li>
+					<a
+						href="/settings"
+						class="no-underline text-gray-600 font-medium hover:text-indigo-600 transition-colors"
+					>
+						Settings
+					</a>
+				</li>
+				<li>
+					<a
+						href="/help"
+						class="no-underline text-gray-600 font-medium hover:text-indigo-600 transition-colors"
+					>
+						Help
+					</a>
+				</li>
 			</ul>
-			<ThemeToggle /> </div>
+			<ThemeToggle />
+		</div>
 	</nav>
 </header>
-
-<style>
-	header {
-		background-color: var(--surface);
-		border-bottom: 1px solid var(--border);
-		padding: 0.5rem 2rem;
-	}
-	nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.logo {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		text-decoration: none;
-		color: var(--text-primary);
-	}
-	h1 {
-		font-size: 1.5rem;
-		font-weight: 600;
-	}
-	.nav-links { 
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-	}
-	ul {
-		list-style: none;
-		display: flex;
-		gap: 2rem;
-		margin: 0;
-		padding: 0;
-	}
-	a {
-		text-decoration: none;
-		color: var(--text-secondary);
-		font-weight: 500;
-		transition: color 0.2s;
-	}
-	a:hover {
-		color: var(--primary);
-	}
-</style>
