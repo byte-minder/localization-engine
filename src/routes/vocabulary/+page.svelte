@@ -1,4 +1,4 @@
-<!-- Generated Using AI - Tailwind converted -->
+<!-- Tailwind converted -->
 <script>
 	let activeTab = "wordlist";
 	let selectedSector = "Healthcare";
@@ -127,11 +127,9 @@
 		</button>
 	</nav>
 
-	<!-- Tab Panels -->
 	<section>
 		{#if activeTab === "wordlist"}
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-				<!-- example cards; replace with dynamic data -->
 				<div class="bg-white rounded-lg shadow p-4">
 					<h3 class="text-sm font-semibold text-gray-800">Welding</h3>
 					<p class="mt-1 text-xs text-gray-600">
