@@ -5,7 +5,8 @@
 	function handleAction() {
 		showResults = true;
 	}
-
+// Suggested languages - Marathi, Bangali, Tamil, Gujarati, Punjabi, Kannada, Malayalam, Oria, Assamese
+// Bhojpuri, kashmiri, urdu, sanskrit, Konkani, manipuri, sindhi, rajasthani, harayanvi, chhattisgarhi
 	const languages = ["English", "Hindi", "Telugu"];
 </script>
 
