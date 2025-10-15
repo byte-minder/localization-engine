@@ -1,13 +1,78 @@
 <script lang="ts">
 	let activeTab: "text" | "pdf" | "audio" = "text";
 	let showResults = false;
+	let fromLang = "English";
+	let toLang = "Hindi";
+	let inputText = "";
+	let translatedText = "";
 
-	function handleAction() {
-		showResults = true;
+	const languages = [
+		"Assamese",
+		"Bengali",
+		"English",
+		"Gujarati",
+		"Hindi",
+		"Kannada",
+		"Malayalam",
+		"Marathi",
+		"Nepali",
+		"Odia",
+		"Punjabi",
+		"Sanskrit",
+		"Tamil",
+		"Telugu",
+		"Urdu",
+		"Kashmiri",
+		"Maithili",
+		"Sindhi",
+		"Bodo",
+		"Dogri",
+		"Konkani",
+		"Manipuri",
+		"Manipuri",
+		"Santali",
+	];
+
+	// Map readable names to API codes for the backend
+	const langMap: Record<string, string> = {
+		English: "eng_Latn",
+		Hindi: "hin_Deva",
+		Telugu: "tel_Telu",
+	};
+
+	async function handleAction() {
+		if (activeTab === "text" && inputText.trim()) {
+			try {
+				// Call the new /translate endpoint
+				const res = await fetch("http://localhost:5000/translate", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						text: inputText,
+						src_lang: fromLang,
+						tgt_lang: toLang,
+					}),
+				});
+
+				const data = await res.json();
+				if (res.ok) {
+					translatedText = data.translation;
+					showResults = true;
+				} else {
+					console.error("Translation failed:", data.error);
+				}
+			} catch (err) {
+				console.error("Error calling server:", err);
+			}
+		} else {
+			// For PDF/audio tabs, we can keep the old placeholder behavior
+			showResults = true;
+			translatedText =
+				"Translation placeholder (PDF/audio tabs not yet implemented)";
+		}
 	}
-// Suggested languages - Marathi, Bangali, Tamil, Gujarati, Punjabi, Kannada, Malayalam, Oria, Assamese
-// Bhojpuri, kashmiri, urdu, sanskrit, Konkani, manipuri, sindhi, rajasthani, harayanvi, chhattisgarhi
-	const languages = ["English", "Hindi", "Telugu"];
 </script>
 
 <svelte:head>
@@ -32,6 +97,7 @@
 					>FROM</label
 				>
 				<select
+					bind:value={fromLang}
 					class="p-2 text-sm bg-white border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
 					id="from-lang"
 				>
@@ -48,6 +114,7 @@
 					>TO</label
 				>
 				<select
+					bind:value={toLang}
 					class="p-2 text-sm bg-white border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
 					id="to-lang"
 				>
@@ -91,6 +158,7 @@
 		<div class="flex flex-col gap-4">
 			{#if activeTab === "text"}
 				<textarea
+					bind:value={inputText}
 					class="w-full min-h-[150px] p-4 border border-gray-300 rounded resize-y focus:outline-none focus:ring-2 focus:ring-indigo-500"
 					placeholder="Enter text to translate..."
 				></textarea>
@@ -166,10 +234,7 @@
 					🔊
 				</button>
 			</div>
-			<p class="text-sm text-gray-800">
-				This is where the translated or transcribed text will appear.
-				Placeholder content.
-			</p>
+			<p class="text-sm text-gray-800">{translatedText}</p>
 		</div>
 	{/if}
 </main>
