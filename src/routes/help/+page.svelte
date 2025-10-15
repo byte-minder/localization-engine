@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
 
-	// generated with AI, for backend engineer if need any improvement pls do
+	// for backend engineer if need any improvement pls do
 	// Add an 'open' state to each FAQ item
 	let faqs = [
 		{
