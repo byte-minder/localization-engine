@@ -16,7 +16,6 @@
 			}
 		};
 
-		// Initial theme application
 		applyTheme($theme);
 
 		const unsubscribe = theme.subscribe(applyTheme);
