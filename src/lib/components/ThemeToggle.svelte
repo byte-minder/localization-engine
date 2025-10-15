@@ -20,6 +20,6 @@
 	{:else if $theme === "dark"}
 		<span>🌙 Dark</span>
 	{:else}
-		<span>💻 System</span>
+		<span> System</span>
 	{/if}
 </button>
