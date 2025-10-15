@@ -1,5 +1,6 @@
 node_modules
 
+
 # Output
 .output
 .vercel
@@ -21,3 +22,142 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Model files
+server/models/indictrans2-indic-en-1B/
+server/models/indictrans2-en-indic-1B/
+server/models/whisper-medium/
+
+# Python cache / build files
+# ------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter & IPython
+.ipynb_checkpoints/
+*.ipynb_save
+.profile_default/
+ipython_config.py
+
+# PyInstaller
+#  Usually creates temp files like 'build/' and 'dist/'
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+*.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# Logs and debug output
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# IDEs and editors
+.vscode/
+.idea/
+.spyproject/
+.ropeproject/
+
+# Type checker / linter
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+ruff_cache/
+
+# Flask / Django
+instance/
+.webassets-cache
+*.db
+*.sqlite3
+
+# Data, models, checkpoints
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.h5
+*.onnx
+*.tflite
+*.model
+*.weights
+*.pb
+*.pkl
+*.joblib
+*.tar.gz
+*.zip
+
+# Hugging Face / Transformers cache
+huggingface/
+.huggingface/
+.cache/
+cache/
+*.lock
+*.safetensors
+
+# Audio / media files
+*.wav
+*.mp3
+*.mp4
+*.m4a
+*.ogg
+*.flac
+
+# Temp uploads
+uploads/
+tmp/
+temp/
+
+# System files
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini

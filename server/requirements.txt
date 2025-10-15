@@ -1,0 +1,33 @@
+# Core
+torch>=2.1.0
+torchaudio>=2.1.0
+transformers>=4.40.0
+accelerate>=0.31.0
+sentencepiece>=0.1.99
+protobuf>=3.20.3
+
+# Whisper (speech-to-text)
+openai-whisper>=20231117
+
+# Flask API
+Flask>=3.0.0
+Flask-Cors>=4.0.0
+gunicorn>=21.2.0
+
+# IndicTrans Toolkit
+IndicTransToolkit @ git+https://github.com/VarunGumma/IndicTransToolkit.git
+
+# Hugging Face tools
+huggingface-hub>=0.23.0
+sacremoses>=0.1.1
+
+# Utilities
+numpy>=1.24.0
+scipy>=1.11.0
+soundfile>=0.12.1
+ffmpeg-python>=0.2.0
+tqdm>=4.66.0
+regex>=2023.10.3
+
+# Logging / debugging
+colorama>=0.4.6
