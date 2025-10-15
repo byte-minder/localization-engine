@@ -5,16 +5,17 @@ import logging
 import shutil
 from typing import Dict, List, Optional
 
+import doc_translator
 import torch
 import torchaudio
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 from IndicTransToolkit.processor import IndicProcessor
 from transformers import (AutoModelForSeq2SeqLM, AutoTokenizer,
                           WhisperForConditionalGeneration, WhisperProcessor)
 
-transformers_logger = logging.getLogger("transformers")
-transformers_logger.setLevel(logging.DEBUG)
+# transformers_logger = logging.getLogger("transformers")
+# transformers_logger.setLevel(logging.DEBUG)
 
 
 # ----------------------
@@ -68,8 +69,7 @@ LANG_CODES = {
     "Bodo": "brx_Deva",
     "Dogri": "doi_Deva",
     "Konkani": "kok_Deva",
-    "Manipuri (Bengali)": "mni_Beng",
-    "Manipuri (Meetei)": "mni_Mtei",
+    "Manipuri": "mni_Beng",
     "Santali": "sat_Olck",
 }
 
@@ -316,6 +316,33 @@ def translate_endpoint():
             "translated_to": tgt_lang,
         }
     )
+
+
+@app.route("/translate-document-advanced", methods=["POST"])
+def translate_document_endpoint():
+    if "file" not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    pdf_file = request.files["file"]
+    if pdf_file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
+
+    src_lang = request.form.get("src_lang", "English")
+    tgt_lang = request.form.get("tgt_lang", "English")
+
+    try:
+        pdf_bytes = pdf_file.read()
+        translated_pdf_buf = doc_translator.translate_pdf_bytes_preserve_layout(
+            pdf_bytes, src_lang, tgt_lang
+        )
+        return send_file(
+            translated_pdf_buf,
+            as_attachment=True,
+            download_name=f"translated_{pdf_file.filename}",
+            mimetype="application/pdf",
+        )
+    except Exception as e:
+        app.logger.exception("Error translating PDF")
+        return jsonify({"error": str(e)}), 500
 
 
 # Keep Whisper endpoints unchanged...
